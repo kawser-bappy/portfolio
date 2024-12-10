@@ -117,6 +117,33 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
     />
+    <script>
+      function openCarouselPreview(imageSources) {
+        const carouselInner = document.getElementById("carouselImages");
+        carouselInner.innerHTML = ""; // Clear previous carousel items
+
+        imageSources.forEach((src, index) => {
+          // Create carousel item
+          const carouselItem = document.createElement("div");
+          carouselItem.className = `carousel-item ${
+            index === 0 ? "active" : ""
+          }`; // Set first item as active
+
+          // Create img element
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = `Preview Image ${index + 1}`;
+          img.className = "d-block w-100";
+          img.style = "max-height: 80vh; object-fit: contain;";
+
+          // Append img to carousel item
+          carouselItem.appendChild(img);
+
+          // Append carousel item to carousel inner
+          carouselInner.appendChild(carouselItem);
+        });
+      }
+    </script>
 
     <!-- =======================================================
   * Template Name: iPortfolio
@@ -197,14 +224,21 @@
     <main class="main">
       <!-- Hero Section -->
       <section id="hero" class="hero section dark-background">
-        <img src="assets/img/portrait.jpg" alt="" data-aos="fade-in" class="" />
+        <img
+          src="assets/img/portrait.jpg"
+          alt=""
+          data-aos="fade-in"
+          style="filter: brightness(40%)"
+        />
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
           <h2>Muhammed Kawser Ahmed Khan</h2>
           <p>
             I'm
-            <span class="typed" data-typed-items="Delivery Agent, Self Employed"
-              >Delivery Agent</span
+            <span
+              class="typed"
+              data-typed-items="Delivery Agent., Self Employed."
+              >Delivery Agent.</span
             ><span
               class="typed-cursor typed-cursor--blink"
               aria-hidden="true"
@@ -655,6 +689,89 @@
       </section>
       <!-- /Resume Section -->
 
+      <!-- Modal for Image Preview -->
+      <div
+        class="modal fade"
+        id="carouselPreviewModal"
+        tabindex="-1"
+        aria-labelledby="carouselPreviewModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="carouselPreviewModalLabel">
+                Image Preview
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div
+                id="carouselExample"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-indicators">
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+                  ></button>
+                </div>
+                <div class="carousel-inner" id="carouselImages">
+                  <!-- Images will be dynamically added here -->
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExample"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExample"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects Section -->
       <section id="projects" class="projects section light-background">
         <div class="container section-title" data-aos="fade-up">
           <h2>Projects</h2>
@@ -666,17 +783,193 @@
 
         <div class="container">
           <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+            <!-- Ecommerce Sales Project -->
+            <div class="col-lg-4 col-md-6 project-item">
+              <div class="project-content h-100">
+                <!-- Carousel for Images -->
+                <div
+                  id="ecommerceSalesCarousel"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-indicators">
+                    <button
+                      type="button"
+                      data-bs-target="#ecommerceSalesCarousel"
+                      data-bs-slide-to="0"
+                      class="active"
+                      aria-current="true"
+                      aria-label="Slide 1"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#ecommerceSalesCarousel"
+                      data-bs-slide-to="1"
+                      aria-label="Slide 2"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#ecommerceSalesCarousel"
+                      data-bs-slide-to="2"
+                      aria-label="Slide 3"
+                    ></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img
+                        src="assets/img/excel/ecom-1.png"
+                        class="d-block project-image"
+                        alt="Monthly Profit Analysis"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="assets/img/excel/ecom-2.png"
+                        class="d-block project-image"
+                        alt="Product-wise Profit Analysis"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="assets/img/excel/ecom-3.png"
+                        class="d-block project-image"
+                        alt="Visual Graph and Chart"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#ecommerceSalesCarousel"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#ecommerceSalesCarousel"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+
+                <div class="project-info">
+                  <h3 class="project-title">E-commerce Sales Analysis</h3>
+                  <p>
+                    In-depth analysis of e-commerce sales, highlighting monthly
+                    and product-wise profit trends through engaging visual
+                    graphs and charts.
+                  </p>
+                  <div class="project-links">
+                    <!-- Modal Preview Button -->
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#carouselPreviewModal"
+                      onclick="openCarouselPreview([
+                        'assets/img/excel/ecom-1.png', 
+                        'assets/img/excel/ecom-2.png', 
+                        'assets/img/excel/ecom-3.png'
+                      ])"
+                    >
+                      <i class="bi bi-zoom-in me-1"></i>Preview
+                    </button>
+
+                    <!-- External Link -->
+                    <a
+                      href="https://docs.google.com/spreadsheets/u/0/d/1aMgcQ6CKTBCI59ihCYtz762jwCkk5ilSLhVkpOojseQ/htmlview"
+                      class="btn btn-primary btn-sm"
+                      target="_blank"
+                    >
+                      <i class="bi bi-link-45deg me-1"></i>View Sheet
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Supermarket Sales Project -->
             <div class="col-lg-4 col-md-6 project-item">
               <div class="project-content h-100">
-                <div id="supermarketCarousel">
-                  <img
-                    src="assets/img/excel/sales.png"
-                    class="d-block project-image"
-                    alt="Supermarket Sales Detailed View"
-                    loading="lazy"
-                  />
+                <!-- Carousel for Images -->
+                <div
+                  id="supermarketSalesCarousel"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-indicators">
+                    <button
+                      type="button"
+                      data-bs-target="#supermarketSalesCarousel"
+                      data-bs-slide-to="0"
+                      class="active"
+                      aria-current="true"
+                      aria-label="Slide 1"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#supermarketSalesCarousel"
+                      data-bs-slide-to="1"
+                      aria-label="Slide 2"
+                    ></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img
+                        src="assets/img/excel/sales.png"
+                        class="d-block project-image"
+                        alt="Supermarket Sales Dashboard Overview"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="assets/img/excel/sales-2.png"
+                        class="d-block project-image"
+                        alt="Supermarket Sales Detailed Insights"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#supermarketSalesCarousel"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#supermarketSalesCarousel"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
                 </div>
+
                 <div class="project-info">
                   <h3 class="project-title">Supermarket Sales Dashboard</h3>
                   <p>
@@ -685,13 +978,20 @@
                     advanced visualizations.
                   </p>
                   <div class="project-links">
-                    <a
-                      href="assets/img/excel/sales.png"
-                      class="btn btn-outline-primary btn-sm glightbox"
-                      data-gallery="project-gallery"
+                    <!-- Preview Button -->
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#carouselPreviewModal"
+                      onclick="openCarouselPreview([
+            'assets/img/excel/sales.png',
+            'assets/img/excel/sales-2.png'
+          ])"
                     >
                       <i class="bi bi-zoom-in me-1"></i>Preview
-                    </a>
+                    </button>
+
+                    <!-- External Link -->
                     <a
                       href="https://docs.google.com/spreadsheets/u/0/d/1bGhrxSRG1xEhG81GkCWKEg-7DfKcI-9cDmLAQ8Dt52s/htmlview"
                       class="btn btn-primary btn-sm"
@@ -739,7 +1039,7 @@
                       <img
                         src="assets/img/excel/loan.png"
                         class="d-block project-image"
-                        alt="Normal Loan Calculator"
+                        alt="Loan Calculator"
                         loading="lazy"
                       />
                     </div>
@@ -747,7 +1047,7 @@
                       <img
                         src="assets/img/excel/ballon_loan-1.png"
                         class="d-block project-image"
-                        alt="Balloon Loan Calculator"
+                        alt="Balloon Loan Calculation"
                         loading="lazy"
                       />
                     </div>
@@ -755,7 +1055,7 @@
                       <img
                         src="assets/img/excel/ballon_loan-2.jpg"
                         class="d-block project-image"
-                        alt="Loan Payment Schedule"
+                        alt="Loan Analysis"
                         loading="lazy"
                       />
                     </div>
@@ -793,13 +1093,18 @@
                     analysis tools.
                   </p>
                   <div class="project-links">
-                    <a
-                      href="assets/img/excel/loan.png"
-                      class="btn btn-outline-primary btn-sm glightbox"
-                      data-gallery="project-gallery"
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#carouselPreviewModal"
+                      onclick="openCarouselPreview([
+            'assets/img/excel/loan.png',
+            'assets/img/excel/ballon_loan-1.png',
+            'assets/img/excel/ballon_loan-2.jpg'
+          ])"
                     >
                       <i class="bi bi-zoom-in me-1"></i>Preview
-                    </a>
+                    </button>
                     <a
                       href="https://docs.google.com/spreadsheets/u/0/d/1DP0lry2WV3Kb4nsBpup2dS6GH-t95EAIcs8DnUCWucs/htmlview"
                       class="btn btn-primary btn-sm"
@@ -812,18 +1117,18 @@
               </div>
             </div>
 
-            <!-- Mil Calculator Project -->
+            <!-- Meal Bill Sharing Calculator Project -->
             <div class="col-lg-4 col-md-6 project-item">
               <div class="project-content h-100">
                 <div
-                  id="milCalculatorCarousel"
+                  id="mealBillCalculatorCarousel"
                   class="carousel slide"
                   data-bs-ride="carousel"
                 >
                   <div class="carousel-indicators">
                     <button
                       type="button"
-                      data-bs-target="#milCalculatorCarousel"
+                      data-bs-target="#mealBillCalculatorCarousel"
                       data-bs-slide-to="0"
                       class="active"
                       aria-current="true"
@@ -831,7 +1136,7 @@
                     ></button>
                     <button
                       type="button"
-                      data-bs-target="#milCalculatorCarousel"
+                      data-bs-target="#mealBillCalculatorCarousel"
                       data-bs-slide-to="1"
                       aria-label="Slide 2"
                     ></button>
@@ -841,7 +1146,7 @@
                       <img
                         src="assets/img/excel/mil-1.png"
                         class="d-block project-image"
-                        alt="Mil Calculator Main Interface"
+                        alt="Meal Bill Sharing Calculator Overview"
                         loading="lazy"
                       />
                     </div>
@@ -849,7 +1154,7 @@
                       <img
                         src="assets/img/excel/mil-2.png"
                         class="d-block project-image"
-                        alt="Mil Calculator Detailed View"
+                        alt="Expense Distribution Analysis"
                         loading="lazy"
                       />
                     </div>
@@ -857,7 +1162,7 @@
                   <button
                     class="carousel-control-prev"
                     type="button"
-                    data-bs-target="#milCalculatorCarousel"
+                    data-bs-target="#mealBillCalculatorCarousel"
                     data-bs-slide="prev"
                   >
                     <span
@@ -869,7 +1174,7 @@
                   <button
                     class="carousel-control-next"
                     type="button"
-                    data-bs-target="#milCalculatorCarousel"
+                    data-bs-target="#mealBillCalculatorCarousel"
                     data-bs-slide="next"
                   >
                     <span
@@ -887,13 +1192,18 @@
                     consumption.
                   </p>
                   <div class="project-links">
-                    <a
-                      href="assets/img/excel/mil-1.png"
-                      class="btn btn-outline-primary btn-sm glightbox"
-                      data-gallery="project-gallery"
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#carouselPreviewModal"
+                      onclick="openCarouselPreview([
+            'assets/img/excel/mil-1.png',
+            'assets/img/excel/mil-2.png'
+
+          ])"
                     >
                       <i class="bi bi-zoom-in me-1"></i>Preview
-                    </a>
+                    </button>
                     <a
                       href="https://docs.google.com/spreadsheets/u/0/d/1QtYSXZp3JWM5l5WUfLamNgxb5leSu4Kd98gZSATTGGA/htmlview"
                       class="btn btn-primary btn-sm"
@@ -906,7 +1216,7 @@
               </div>
             </div>
 
-            <!-- Task Management Project -->
+            <!-- Task Management System Project -->
             <div class="col-lg-4 col-md-6 project-item">
               <div class="project-content h-100">
                 <div
@@ -935,7 +1245,7 @@
                       <img
                         src="assets/img/excel/task.png"
                         class="d-block project-image"
-                        alt="Task Management Dashboard"
+                        alt="Task Management System Overview"
                         loading="lazy"
                       />
                     </div>
@@ -943,7 +1253,7 @@
                       <img
                         src="assets/img/excel/task-2.png"
                         class="d-block project-image"
-                        alt="Task Allocation and Tracking"
+                        alt="Task Tracking Visualization"
                         loading="lazy"
                       />
                     </div>
@@ -981,13 +1291,18 @@
                     allocation with intuitive visualization.
                   </p>
                   <div class="project-links">
-                    <a
-                      href="assets/img/excel/task.png"
-                      class="btn btn-outline-primary btn-sm glightbox"
-                      data-gallery="project-gallery"
+                    <button
+                      class="btn btn-outline-primary btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#carouselPreviewModal"
+                      onclick="openCarouselPreview([
+            'assets/img/excel/task.png',
+            'assets/img/excel/task-2.png'
+
+          ])"
                     >
                       <i class="bi bi-zoom-in me-1"></i>Preview
-                    </a>
+                    </button>
                     <a
                       href="https://docs.google.com/spreadsheets/u/0/d/1HSuJ8PtPnWAeK-qRa9fcr1OTZkS3nhkb2f7HNre-YlQ/htmlview"
                       class="btn btn-primary btn-sm"
@@ -1002,6 +1317,7 @@
           </div>
         </div>
       </section>
+      <!-- End Projects Section -->
 
       <!-- Services Section -->
       <section id="services" class="services section">
@@ -1187,45 +1503,39 @@
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script>
-      // Initialize Glightbox with custom options
+      // Initialize Glightbox with default options
       const lightbox = GLightbox({
-        selector: ".glightbox",
+        selector: ".glightbox", // Matches the "Preview" button
         touchNavigation: true,
         loop: true,
         autoplayVideos: false,
-        moreLength: 0,
-        slideEffect: "slide",
-        preload: true,
-        // Custom function to show all images in carousel during preview
-        onOpen: (instance) => {
-          const activeSlide = instance.currentSlide;
-          const carousel = activeSlide.querySelector(".carousel");
-          if (carousel) {
-            const images = Array.from(
-              carousel.querySelectorAll(".carousel-item img")
-            );
-            const previewContainer = activeSlide.querySelector(".gslide-image");
-
-            // Clear previous content
-            previewContainer.innerHTML = "";
-
-            // Add all images to preview
-            images.forEach((img, index) => {
-              const newImg = document.createElement("img");
-              newImg.src = img.src;
-              newImg.alt = img.alt;
-              newImg.style.maxWidth = "90%";
-              newImg.style.maxHeight = "80vh";
-              newImg.style.objectFit = "contain";
-              newImg.style.margin = "10px auto";
-              newImg.style.display = "block";
-              previewContainer.appendChild(newImg);
-            });
-          }
-        },
       });
+    </script>
+    <script>
+      // Function to set the images in the modal carousel
+      function openCarouselPreview(images) {
+        let carouselImagesContainer = document.getElementById("carouselImages");
+        carouselImagesContainer.innerHTML = ""; // Clear existing images
+
+        // Dynamically add images to the carousel
+        images.forEach((image, index) => {
+          const carouselItem = document.createElement("div");
+          carouselItem.classList.add("carousel-item");
+          if (index === 0) carouselItem.classList.add("active");
+
+          const img = document.createElement("img");
+          img.src = image;
+          img.classList.add("d-block", "w-100");
+          img.alt = "Carousel Image";
+          img.loading = "lazy";
+
+          carouselItem.appendChild(img);
+          carouselImagesContainer.appendChild(carouselItem);
+        });
+      }
     </script>
   </body>
 </html>
